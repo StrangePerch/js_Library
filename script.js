@@ -233,6 +233,7 @@ function SaveBook() {
 
 function Remove() {
     RemoveBook(selected_id);
+    HideModal();
 }
 
 function RemoveBook() {
