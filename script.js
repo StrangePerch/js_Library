@@ -70,7 +70,8 @@ function Has(key, value) {
 }
 
 function CheckID() {
-    if(!Has("id", parseInt(id_input.value)))
+    let id = parseInt(id_input.value);
+    if(!Has("id", id) && id > 0)
     {
         SetGreen(id_label);
         return true;
@@ -110,7 +111,7 @@ function CheckString(key) {
 function CheckInt(key) {
     let input = window[key + "_input"];
     let label = window[key + "_label"];
-    if(isNumeric(input.value))
+    if(isNumeric(input.value) && input.value >= 0)
     {
         SetGreen(label);
         return true;
@@ -172,7 +173,7 @@ function AddBook(book) {
             <td>${book.id}</td>
             <td>${book.name}</td>
             <td>${book.author}</td>
-            <td>${GetShortDateString(book.date)}</td>
+            <td>${book.date}</td>
             <td>${book.publisher}</td>
             <td>${book.pages}</td>
             <td>${book.available}</td>
@@ -214,7 +215,7 @@ function EditBook(id) {
     let book = books.find(book => book.id === id);
     name_input.value = book.name;
     author_input.value = book.author;
-    date_input.value = GetShortDateString(book.date);
+    date_input.value = book.date;
     publisher_input.value = book.publisher;
     pages_input.value = book.pages;
     available_input.value = book.available;
@@ -310,23 +311,21 @@ function Save()
 
 function Load() {
     books = JSON.parse(Storage.getItem("books"));
+    if(books === null)
+    {
+        books = [];
+        AddBook({
+            id: 1,
+            name: "Name",
+            author: "Author",
+            date: "1995-12-17",
+            publisher: "Publisher",
+            pages: 60,
+            available: 5});
+    }
     for (const book of books) {
         book.date = book.date.substring(0,10);
     }
     Refresh();
 }
-
 Load();
-
-if(books === null)
-{
-    books = [];
-    AddBook({
-        id: 1, 
-        name: "Name",
-        author: "Author",
-        date: "1995-12-17",
-        publisher: "Publisher",
-        pages: 60,
-        available: 5});
-}
