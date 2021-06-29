@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+</head>
+<body>
+<div class="big-header">LIBRARY</div>
+
+<ul class="nav">
+    <li><a class="active" href="">Books</a></li>
+    <li><a href="">Visitors</a></li>
+    <li><a href="">Cards</a></li>
+    <li><a href="">Statistics</a></li>
+</ul>
+<div style="padding: 15px 15px 15px 30px">
+    <ul style="padding: 0; margin: 0">
+        <li style="float:left"><div class="small-header">ALL BOOKS</div></li>
+        <li style="float:right"><button id="open_modal">New book</button></li>
+    </ul>
+    <hr style="margin-top: 40px; margin-bottom: 20px">
+    <ul style="padding: 0; margin: 0">
+        <li style="float:left">
+            <label>
+                Sort by: <select id="sort_select">
+                <option value="ID">ID</option>
+                <option value="Name">Name</option>
+                <option value="Author">Author</option>
+                <option value="Date">Date</option>
+                <option value="Publisher">Publisher</option>
+                <option value="Pages">Pages</option>
+                <option value="Available">Available</option>
+            </select> <button onclick="Sort()">Sort</button>
+            </label>
+        </li>
+        <li style="float:right">
+            <label>
+                Search: <input type="text" style="width: 100px" id="search_input"> <button onclick="Search()">Search</button>
+            </label>
+        </li>
+    </ul>
+    <table id="books_table" style="width: 100%; margin-top: 60px">
+        <tr class="TableHeaders">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Date</th>
+            <th>Publisher</th>
+            <th>Pages</th>
+            <th>Available</th>
+            <th>Edit</th>
+        </tr>
+    </table>
+</div>
+<div id="modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span id="close_modal" class="close">&times;</span>
+        <h2>Add new book</h2>
+        <table>
+            <tr>
+                <th><label id="id_label" for="id_input">ID:</label></th>
+                <th><input onchange="CheckInt('id')" id="id_input"></th>
+            </tr>
+            <tr>
+                <th><label id="name_label" for="name_input">Name:</label></th>
+                <th><input onchange="CheckString('name')" id="name_input" value="Harry Potter and the Philosopher's Stone"></th>
+            </tr>
+            <tr>
+                <th><label id="author_label" for="author_input">Author:</label></th>
+                <th><input onchange="CheckString('author')"  id="author_input" value="J. K. Rowling"></th>
+            </tr>
+            <tr>
+                <th><label id="date_label" for="date_input">Date:</label></th>
+                <th><input onchange="CheckDate()"  id="date_input" value="1997-06-26"></th>
+            </tr>
+            <tr>
+                <th><label id="publisher_label" for="publisher_input">Publisher:</label></th>
+                <th><input onchange="CheckString('publisher')" id="publisher_input" value="Bloomsbury"></th>
+            </tr>
+            <tr>
+                <th><label id="pages_label" for="pages_input">Pages:</label></th>
+                <th><input onchange="CheckInt('pages')" id="pages_input" value="223"></th>
+            </tr>
+            <tr>
+                <th><label id="available_label" for="available_input">Available:</label></th>
+                <th><input onchange="CheckInt('available')" id="available_input" value="95"></th>
+            </tr>
+        </table>
+        <div id="buttons"></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
