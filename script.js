@@ -247,7 +247,7 @@ function NewBook() {
             id: parseInt(id_input.value),
             name: name_input.value,
             author: author_input.value,
-            date: new Date(date_input.value),
+            date: date_input.value,
             publisher: publisher_input.value,
             pages: parseInt(pages_input.value),
             available: parseInt(available_input.value)});
